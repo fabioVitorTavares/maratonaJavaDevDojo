@@ -1,17 +1,20 @@
 package classes;
 
 public class Professor extends Funcionario{
+
+    public Professor(String cpf, String nome, String rg) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.rg = rg;
+    }
+
     public String cpf;
     public String nome;
     public String rg;
 
-    @Override
-    public String toString() {
-        return "Professor{" +
-                "cpf='" + cpf + '\'' +
-                ", nome='" + nome + '\'' +
-                ", rg='" + rg + '\'' +
-                ", CodFuncionario='" + CodFuncionario + '\'' +
-                '}';
+
+    public void alteraNome(){
+        this.nome += " Alt";
     }
+
 }

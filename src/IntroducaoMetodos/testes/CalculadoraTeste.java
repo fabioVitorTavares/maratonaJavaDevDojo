@@ -5,15 +5,6 @@ import IntroducaoMetodos.classes.Calculadora;
 public class CalculadoraTeste {
     public static void main(String[] args) {
         Calculadora calculadora = new Calculadora();
-//
-//        calculadora.soma(8+9, 8);
-//
-//
-//        calculadora.subtrai(9,8);
-//
-//
-//
-//
 
         int[] arrayGrande = new int[100000000];
 
@@ -22,6 +13,14 @@ public class CalculadoraTeste {
             arrayGrande[i] = i*10;
         }
 
-        calculadora.somaArray(arrayGrande);
+
+        int num1 = 5;
+        int num2 = 10;
+        calculadora.alteraDoisNumeros(num1, num2);
+        System.out.println(num1);
+        System.out.println(num2);
+
     }
+
+
 }

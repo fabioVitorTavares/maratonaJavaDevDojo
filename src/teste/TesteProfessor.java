@@ -6,18 +6,12 @@ import java.util.Objects;
 
 public class TesteProfessor {
     public static void main(String[] args) {
-        Professor professor = new Professor();
-        Professor professor2 = new Professor();
+        Professor professor = new Professor("12576264697", "Fabio V", "123456");
 
-        professor.cpf = "12576264697";
-        professor.nome = "Fabio";
-        professor.rg = "1255658145";
 
-        professor2.cpf = "12576264697";
-        professor2.nome = "Fabio";
-        professor2.rg = "1255658145";
+        System.out.println(professor.nome);
 
-        professor.CodFuncionario = "252525";
-        System.out.println(professor.toString());
+        professor.alteraNome();
+        System.out.println(professor.nome);
     }
 }

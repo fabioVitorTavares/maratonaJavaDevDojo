@@ -32,4 +32,11 @@ public class Calculadora {
         System.out.println(soma2 + " Executado em : " + timeCorrido + "ms");
 
     }
+
+    public void alteraDoisNumeros(int num1, int num2){
+        num1 = 50;
+        num2 = 100;
+        System.out.println(num1);
+        System.out.println(num2);
+    }
 }
