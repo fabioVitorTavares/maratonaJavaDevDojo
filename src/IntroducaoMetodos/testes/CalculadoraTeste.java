@@ -14,12 +14,11 @@ public class CalculadoraTeste {
         }
 
 
-        int num1 = 5;
-        int num2 = 10;
-        calculadora.alteraDoisNumeros(num1, num2);
-        System.out.println(num1);
-        System.out.println(num2);
 
+        int[] numeros = {1,2,3,4};
+
+//        calculadora.somaNumeros(numeros);
+        calculadora.somaNumeros(4,5,2,5,3);
     }
 
 

@@ -39,4 +39,13 @@ public class Calculadora {
         System.out.println(num1);
         System.out.println(num2);
     }
+
+    public void somaNumeros(int... numeros){
+        int soma = 0;
+        for(int n : numeros){
+            soma += n;
+        }
+        System.out.println(soma);
+        System.out.println(numeros.length);
+    }
 }
