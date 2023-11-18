@@ -1,8 +1,5 @@
 package JDBC;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Arrays;
 
 
@@ -10,7 +7,7 @@ public class ConexaoFactory {
 
     public static Connection getConexao() {
         String url = "jdbc:postgresql://localhost:5432/agencia";
-        String user = "postgres";
+        String user = "fabio";
         String password = "postgres";
 
         try {
@@ -39,6 +36,17 @@ public class ConexaoFactory {
         try {
             if(statement != null){
                 statement.close();
+            }
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public static void closeConection(Connection connection, Statement statement, ResultSet resultSet){
+        closeConection(connection, statement);
+        try {
+            if(resultSet != null){
+                resultSet.close();
             }
         }
         catch (SQLException e){

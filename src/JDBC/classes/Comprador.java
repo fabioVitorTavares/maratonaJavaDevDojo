@@ -1,11 +1,15 @@
 package JDBC.classes;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Comprador {
     private int id;
     private String cpf;
     private String nome;
+    private LocalDateTime dataCadastro;
+    private LocalDateTime dataAtualizacao;
+
 
     public int getId() {
         return id;
@@ -31,14 +35,44 @@ public class Comprador {
         this.nome = nome;
     }
 
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public LocalDateTime getDataAtualizacao() {
+        return dataAtualizacao;
+    }
+
+    public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
+        this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public Comprador(String cpf, String nome, LocalDateTime dataCadastro) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.dataCadastro = dataCadastro;
+    }
+
     public Comprador(int id, String cpf, String nome) {
         this.id = id;
         this.cpf = cpf;
         this.nome = nome;
     }
-    public Comprador( String cpf, String nome) {
+
+    public Comprador(int id, String cpf, String nome, LocalDateTime dataCadastro, LocalDateTime dataAtualizacao) {
+        this.id = id;
         this.cpf = cpf;
         this.nome = nome;
+        this.dataCadastro = dataCadastro;
+        this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public Comprador(int id) {
+        this.id = id;
     }
     public Comprador() {}
 
@@ -53,5 +87,16 @@ public class Comprador {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Comprador{" +
+                "id=" + id +
+                ", cpf='" + cpf + '\'' +
+                ", nome='" + nome + '\'' +
+                ", dataCadastro=" + dataCadastro +
+                ", dataAtualizacao=" + dataAtualizacao +
+                '}';
     }
 }
