@@ -8,13 +8,27 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompradorDB {
+public class CompradorDBOld {
     public static void save(Comprador comprador){
         String sql = "INSERT INTO comprador (cpf,nome,data_cadastro) VALUES ('" + comprador.getCpf() + "','" + comprador.getNome() +"','" + comprador.getDataCadastro() + "')";
         Connection connection = ConexaoFactory.getConexao();
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
+            ConexaoFactory.closeConection(connection,statement);
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void saveCallable(String nome){
+        String sql = "CALL addcomprador( ? )";
+        Connection connection = ConexaoFactory.getConexao();
+        try {
+            CallableStatement statement = connection.prepareCall(sql);
+            statement.setString(1, nome);
+            statement.executeQuery();
             ConexaoFactory.closeConection(connection,statement);
         }
         catch (SQLException e){
@@ -41,6 +55,23 @@ public class CompradorDB {
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
+            ConexaoFactory.closeConection(connection,statement);
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static  void updatePreparedStatement(Comprador comprador){
+        String sql = "UPDATE comprador SET nome = ?, cpf = ?, data_atualizacao = ? WHERE id = ?";
+        Connection connection = ConexaoFactory.getConexao();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, comprador.getNome());
+            statement.setString(2, comprador.getCpf());
+            statement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setInt(4, comprador.getId());
+            statement.executeUpdate();
             ConexaoFactory.closeConection(connection,statement);
         }
         catch (SQLException e){
@@ -91,6 +122,27 @@ public class CompradorDB {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet =  statement.executeQuery(sql);
+            List<Comprador> compradores = new ArrayList<>();
+            while(resultSet.next()){
+                compradores.add(extractOfResultSet(resultSet));
+            }
+            ConexaoFactory.closeConection(connection,statement);
+            return compradores;
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public static  List<Comprador> selectByNomePreparedStatement(String nome){
+        String sql =  "SELECT * FROM comprador WHERE nome ILIKE ?";
+        Connection connection = ConexaoFactory.getConexao();
+        try {
+            assert connection != null;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "%" +  nome + "%");
+            ResultSet resultSet =  statement.executeQuery();
             List<Comprador> compradores = new ArrayList<>();
             while(resultSet.next()){
                 compradores.add(extractOfResultSet(resultSet));
@@ -194,7 +246,7 @@ public class CompradorDB {
 
 
     public static  void testTypeScroll(){
-        String sql =  "SELECT * FROM comprador ORDER BY id DESC";
+        String sql =  "SELECT * FROM comprador ORDER BY id DESC ";
         Connection connection = ConexaoFactory.getConexao();
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

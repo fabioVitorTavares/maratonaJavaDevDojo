@@ -1,14 +1,11 @@
 package JDBC;
 
 import JDBC.classes.Comprador;
-import JDBC.db.CompradorDB;
-
-import java.sql.Connection;
-import java.time.LocalDateTime;
+import JDBC.db.CompradorDBOld;
 
 public class ConexaoTest {
 
-    private  final CompradorDB compradorDB = new CompradorDB();
+    private  final CompradorDBOld compradorDB = new CompradorDBOld();
     public static void main(String[] args) {
 
 //        save(new Comprador("10000006", "MARIA",LocalDateTime.now()));
@@ -20,39 +17,43 @@ public class ConexaoTest {
 //        selectByCpf("000000");
 //        selectMetaData();
 //        checkDriverStatus();
-        testTypeScroll();
+//        testTypeScroll();
+//        System.out.println(CompradorDB.selectByNomePreparedStatement("be"));
+//        CompradorDB.updatePreparedStatement(new Comprador(5, "JORGE", "1235465"));
+            CompradorDBOld.saveCallable("Pedro Silva");
     }
 
+
     public static void save(Comprador comprador) {
-        CompradorDB.save(comprador);
+        CompradorDBOld.save(comprador);
     }
 
     public static void delete(Comprador comprador ){
-       CompradorDB.delete(comprador);
+       CompradorDBOld.delete(comprador);
     }
 
     public static void update(Comprador comprador ){
-       CompradorDB.update(comprador);
+       CompradorDBOld.update(comprador);
     }
     public static void selectAll(){
-        System.out.println(CompradorDB.selectAll());
+        System.out.println(CompradorDBOld.selectAll());
     }
     public static void selectById(int id){
-        System.out.println(CompradorDB.selectById(id));
+        System.out.println(CompradorDBOld.selectById(id));
     }
     public static void selectByNome(String nome){
-        System.out.println(CompradorDB.selectByNome(nome));
+        System.out.println(CompradorDBOld.selectByNome(nome));
     }
     public static void selectByCpf(String cpf){
-        System.out.println(CompradorDB.selectByCpf(cpf));
+        System.out.println(CompradorDBOld.selectByCpf(cpf));
     }
     public static void selectMetaData(){
-       CompradorDB.selectMetaData();
+       CompradorDBOld.selectMetaData();
     }
     public static void checkDriverStatus(){
-       CompradorDB.checkDriverStatus();
+       CompradorDBOld.checkDriverStatus();
     }
     public static void testTypeScroll(){
-       CompradorDB.testTypeScroll();
+       CompradorDBOld.testTypeScroll();
     }
 }
