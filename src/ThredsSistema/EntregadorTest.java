@@ -3,8 +3,6 @@ package ThredsSistema;
 import javax.swing.*;
 
 public class EntregadorTest {
-
-
     public static void main(String[] args) {
         ListaMembros listaMembros = new ListaMembros();
         Thread t1 = new Thread(new Entregador(listaMembros), "Entregador 1");
