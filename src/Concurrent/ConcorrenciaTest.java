@@ -1,15 +1,25 @@
 package Concurrent;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static java.lang.System.out;
 
 class Contador{
     private int count;
     private AtomicInteger atomicInteger = new AtomicInteger();
-    public void increment(){
-        count++;
-        atomicInteger.getAndIncrement();
+    private Lock lock = new ReentrantLock();
+    public  void increment(){
+        lock.lock();
+        out.println(lock);
+        try {
+            count++;
+            atomicInteger.getAndIncrement();
+        }
+        finally {
+            lock.unlock();
+        }
     }
 
     public int getCount(){
